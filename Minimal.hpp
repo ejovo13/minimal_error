@@ -23,6 +23,8 @@ public:
     const T& at(int i) const; // at actually goes ahead and verifies whether or not the bounds are legit
     const T& operator()(int i) const;
 
+    bool is_valid_bound(int i) const;
+
     T& first();
     T& last();
     const T& first() const;
@@ -38,6 +40,11 @@ T& Grid1D<T>::operator()(int i) {
 template <class T>
 const T& Grid1D<T>::operator()(int i) const {
     return this->operator[](i - 1);
+}
+
+template <class T>
+bool Grid1D<T>::is_valid_bound(int i) const {
+    return (i >= 1 && i <= this->size());
 }
 
 template <class T>
